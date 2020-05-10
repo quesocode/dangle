@@ -1,0 +1,173 @@
+//
+//  DanglePrefix.h
+//  Dangle
+//
+//  Created by Me on 5/12/15.
+//  Copyright (c) 2015 Dangle. All rights reserved.
+//
+
+#ifndef Dangle_DanglePrefix_h
+#define Dangle_DanglePrefix_h
+
+
+
+
+#import <Availability.h>
+
+
+
+#ifdef __OBJC__
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import <SystemConfiguration/SystemConfiguration.h>
+#import <CocoaLumberjack/CocoaLumberjack.h>
+
+#endif
+
+
+
+
+
+
+
+
+
+/*
+ *  System Versioning Preprocessor Macros
+ */
+
+#define SYSTEM_VERSION_EQUAL_TO(v)                  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedSame)
+#define SYSTEM_VERSION_GREATER_THAN(v)              ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedDescending)
+#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+#define SYSTEM_VERSION_LESS_THAN(v)                 ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
+#define SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(v)     ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedDescending)
+
+
+#   define XCODE_COLORS "XcodeColors"
+#   undef DDLogError
+#   undef DDLogWarn
+#   undef DDLogInfo
+#   undef DDLogDebug
+#   undef DDLogVerbose
+
+#ifndef DEBUG
+#   define DLog(...) /* NSLog debug wrapper */
+#   define QLog(...)
+#   define LINE_COLOR  @""
+#   define LOG_BG_COLOR  @""
+#   define LOG_KEY_COLOR  @""
+#   define LOG_VALUE_COLOR  @""
+#   define LOG_HEADER_BG_COLOR @""
+#   define LOG_HEADER_FG_COLOR  @""
+#   define LOG_RED_COLOR    @""
+#   define LOG_BLUE_COLOR    @""
+#   define LOG_YELLOW_COLOR    @""
+#   define LOG_GREEN_COLOR    @""
+#   define LOG_HIDDEN_COLOR    @""
+#   define LOG_PURPLE_COLOR     @""
+#   define DDLogFatal(frmt, ...)
+#   define DDLogError(frmt, ...)
+#   define DDLogWarn(frmt, ...)
+#   define DDLogInfo(frmt, ...)
+#   define DDLogDebug(frmt, ...)
+#   define DDLogHidden(frmt, ...)
+#   define DDLogRender(frmt, ...)
+#   define DDLogMemory(frmt, ...)
+#   define XCODE_COLORS_ESCAPE  @""
+#   define XCODE_COLORS_RESET_FG  XCODE_COLORS_ESCAPE @"" // Clear any foreground color
+#   define XCODE_COLORS_RESET_BG  XCODE_COLORS_ESCAPE @"" // Clear any background color
+#   define XCODE_COLORS_RESET     XCODE_COLORS_ESCAPE @""   // Clear any foreground or background color
+
+#endif
+
+
+#ifndef DLog
+
+#   define LINE_COLOR  @"fg0,0,0;"
+
+#   define LOG_BG_COLOR  @"bg28,28,27;"
+#   define LOG_HEADER_BG_COLOR  @"bg22,22,21;"
+#   define LOG_HEADER_FG_COLOR  @"bg99,99,98;"
+
+#   define LOG_KEY_COLOR  @"fg145,143,141;"
+#   define LOG_VALUE_COLOR  @"fg94,197,128;"
+#   define LOG_RED_COLOR    @"fg227,76,76;"
+#   define LOG_BLUE_COLOR    @"fg0,204,192;"
+#   define LOG_YELLOW_COLOR    @"fg236,206,38;"
+#   define LOG_GREEN_COLOR    @"fg117,178,21;"
+#   define LOG_PURPLE_COLOR    @"fg209,23,154;"
+#   define LOG_HIDDEN_COLOR     @"fg59,59,58;"
+
+#define LOG_FLAG_FATAL   (1 << 0)  // 0...000001
+#define LOG_FLAG_ERROR   (1 << 1)  // 0...000010
+#define LOG_FLAG_WARN    (1 << 2)  // 0...000100
+#define LOG_FLAG_INFO    (1 << 3)  // 0...010000
+#define LOG_FLAG_DEBUG   (1 << 4)  // 0...100000
+#define LOG_FLAG_HIDDEN   (1 << 5)
+#define LOG_FLAG_RENDER   (1 << 6)
+#define LOG_FLAG_MEMORY   (1 << 7)
+
+
+#define LOG_LEVEL_FATAL   (LOG_FLAG_FATAL)                     // 0...000001
+#define LOG_LEVEL_ERROR   (LOG_FLAG_ERROR  | LOG_LEVEL_FATAL ) // 0...000011
+#define LOG_LEVEL_WARN    (LOG_FLAG_WARN   | LOG_LEVEL_ERROR ) // 0...000111
+#define LOG_LEVEL_INFO    (LOG_FLAG_INFO   | LOG_LEVEL_WARN) // 0...011111
+#define LOG_LEVEL_DEBUG   (LOG_FLAG_DEBUG  | LOG_LEVEL_INFO  ) // 0...111111
+#define LOG_LEVEL_HIDDEN   (LOG_FLAG_HIDDEN  | LOG_LEVEL_DEBUG  ) // 0...111111
+#define LOG_LEVEL_RENDER   (LOG_FLAG_RENDER  | LOG_LEVEL_HIDDEN  ) // 0...111111
+#define LOG_LEVEL_MEMORY   (LOG_FLAG_MEMORY  | LOG_LEVEL_RENDER  ) // 0...111111
+
+
+
+
+#define     ddLogLevel LOG_LEVEL_MEMORY
+
+#define DDLogFatal(frmt, ...)   LOG_MAYBE(NO,  ddLogLevel, LOG_FLAG_FATAL,  0, nil, __PRETTY_FUNCTION__, frmt, ##__VA_ARGS__)
+#define DDLogError(frmt, ...)   LOG_MAYBE(NO,  ddLogLevel, LOG_FLAG_ERROR,  0, nil, __PRETTY_FUNCTION__, frmt, ##__VA_ARGS__)
+#define DDLogWarn(frmt, ...)    LOG_MAYBE(YES, ddLogLevel, LOG_FLAG_WARN,   0, nil, __PRETTY_FUNCTION__, frmt, ##__VA_ARGS__)
+#define DDLogInfo(frmt, ...)    LOG_MAYBE(YES, ddLogLevel, LOG_FLAG_INFO,   0, nil, __PRETTY_FUNCTION__, frmt, ##__VA_ARGS__)
+#define DDLogDebug(frmt, ...)   LOG_MAYBE(YES, ddLogLevel, LOG_FLAG_DEBUG,  0, nil, __PRETTY_FUNCTION__, frmt, ##__VA_ARGS__)
+#define DDLogHidden(frmt, ...)   LOG_MAYBE(YES,  ddLogLevel, LOG_FLAG_HIDDEN,  0, nil, __PRETTY_FUNCTION__, frmt, ##__VA_ARGS__)
+#define DDLogRender(frmt, ...)   LOG_MAYBE(YES,  ddLogLevel, LOG_FLAG_RENDER,  0, nil, __PRETTY_FUNCTION__, frmt, ##__VA_ARGS__)
+#define DDLogMemory(frmt, ...)   LOG_MAYBE(YES,  ddLogLevel, LOG_FLAG_MEMORY,  0, nil, __PRETTY_FUNCTION__, frmt, ##__VA_ARGS__)
+
+
+
+
+#   define XCODE_COLORS_ESCAPE_MAC @"\033["
+#   define XCODE_COLORS_ESCAPE_IOS @"\033["
+#if TARGET_OS_IPHONE
+#   define XCODE_COLORS_ESCAPE  XCODE_COLORS_ESCAPE_IOS
+#else
+#   define XCODE_COLORS_ESCAPE  XCODE_COLORS_ESCAPE_MAC
+#endif
+
+#   define XCODE_COLORS_RESET_FG  XCODE_COLORS_ESCAPE @"fg;" // Clear any foreground color
+#   define XCODE_COLORS_RESET_BG  XCODE_COLORS_ESCAPE @"bg;" // Clear any background color
+#   define XCODE_COLORS_RESET     XCODE_COLORS_ESCAPE @";"   // Clear any foreground or background color
+
+#   define DLog(...) DDLogInfo(__VA_ARGS__)
+
+#endif
+
+#ifndef RemoteLog
+#   define RemoteLog DLog
+#endif
+
+#ifndef QLog
+#   define QLog(fmt, ...) { NSString *newFormat = (@"" fmt); if([newFormat hasPrefix:@": "]) newFormat = [NSString stringWithFormat:@"\n%s  %@", __PRETTY_FUNCTION__, [newFormat substringFromIndex:2]]; if([newFormat hasPrefix:@":# "]) newFormat = [NSString stringWithFormat:@"\n%s[Line %d]  %@", __PRETTY_FUNCTION__, __LINE__, [newFormat substringFromIndex:3]]; DLog(newFormat, ##__VA_ARGS__); }
+#endif
+
+
+
+#define AlertLog(fmt, ...)  { \
+UIAlertView *alert = [[UIAlertView alloc] \
+initWithTitle : [NSString stringWithFormat:@"%s(Line: %d) ", __PRETTY_FUNCTION__, __LINE__]\
+message : [NSString stringWithFormat : fmt, ##__VA_ARGS__]\
+delegate : nil\
+cancelButtonTitle : @"Ok"\
+otherButtonTitles : nil];\
+[alert show];\
+}
+
+#endif

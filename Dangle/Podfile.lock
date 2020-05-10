@@ -1,0 +1,43 @@
+PODS:
+  - ClusterPrePermissions (0.5.0)
+  - CocoaLumberjack (2.0.0):
+    - CocoaLumberjack/Default (= 2.0.0)
+    - CocoaLumberjack/Extensions (= 2.0.0)
+  - CocoaLumberjack/Core (2.0.0)
+  - CocoaLumberjack/Default (2.0.0):
+    - CocoaLumberjack/Core
+  - CocoaLumberjack/Extensions (2.0.0):
+    - CocoaLumberjack/Default
+  - JSQMessagesViewController (7.0.2):
+    - JSQSystemSoundPlayer (~> 2.0.1)
+  - JSQSystemSoundPlayer (2.0.1)
+  - LayerKit (0.13.0)
+  - SVProgressHUD (HEAD based on 1.1.3)
+
+DEPENDENCIES:
+  - ClusterPrePermissions (~> 0.1)
+  - CocoaLumberjack
+  - JSQMessagesViewController (from `https://github.com/jessesquires/JSQMessagesViewController.git`, branch `develop`)
+  - JSQSystemSoundPlayer (~> 2.0)
+  - LayerKit
+  - SVProgressHUD (HEAD)
+
+EXTERNAL SOURCES:
+  JSQMessagesViewController:
+    :branch: develop
+    :git: https://github.com/jessesquires/JSQMessagesViewController.git
+
+CHECKOUT OPTIONS:
+  JSQMessagesViewController:
+    :commit: 98368fc1050bf34429aab479c1c6abdfe209b2cd
+    :git: https://github.com/jessesquires/JSQMessagesViewController.git
+
+SPEC CHECKSUMS:
+  ClusterPrePermissions: f7c18aed36022662a05048fffb44b24b9e796cff
+  CocoaLumberjack: a6f77d987d65dc7ba86b0f84db7d0b9084f77bcb
+  JSQMessagesViewController: bb6649691182b1899dc52b42266ad69efc473510
+  JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
+  LayerKit: e8c4abff3198af5f3eab183aaf324e199a302a4e
+  SVProgressHUD: 748080e4f36e603f6c02aec292664239df5279c1
+
+COCOAPODS: 0.36.0

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ZyI-ta-LSa">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+    </dependencies>
+    <scenes>
+        <!--Root View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController title="Dangle" id="BYZ-38-t0r" userLabel="Root View Controller" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Looking for Dangle..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dFM-ex-NgX">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" red="0.6705882353" green="0.39607843139999999" blue="0.72549019609999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="fkt-TN-fZl">
+                                <rect key="frame" x="282" y="232" width="37" height="37"/>
+                            </activityIndicatorView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MBc-PR-poL">
+                                <rect key="frame" x="184" y="531" width="233" height="30"/>
+                                <color key="backgroundColor" red="0.2823529541" green="0.26274511220000002" blue="0.26274511220000002" alpha="1" colorSpace="deviceRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="nFd-wU-0fc"/>
+                                    <constraint firstAttribute="width" constant="233" id="po9-3G-qtv"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                <inset key="contentEdgeInsets" minX="2" minY="2" maxX="2" maxY="2"/>
+                                <state key="normal" title="I don't have a Dangle?">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="dFM-ex-NgX" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="94g-wA-ZYD"/>
+                            <constraint firstItem="dFM-ex-NgX" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="LxG-Sh-oWv"/>
+                            <constraint firstAttribute="centerY" secondItem="dFM-ex-NgX" secondAttribute="centerY" id="PfY-EB-ySM"/>
+                            <constraint firstAttribute="centerX" secondItem="dFM-ex-NgX" secondAttribute="centerX" id="bEf-0V-cOc"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="MBc-PR-poL" secondAttribute="bottom" constant="39" id="dvV-Yb-qH4"/>
+                            <constraint firstAttribute="centerX" secondItem="fkt-TN-fZl" secondAttribute="centerX" constant="-0.5" id="mAs-uU-3qo"/>
+                            <constraint firstAttribute="centerX" secondItem="MBc-PR-poL" secondAttribute="centerX" constant="-0.5" id="sME-0V-Szg"/>
+                            <constraint firstAttribute="centerY" secondItem="fkt-TN-fZl" secondAttribute="centerY" constant="50" id="t18-jZ-i5H"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Dangle" id="DUV-Pi-Sbo"/>
+                    <connections>
+                        <outlet property="activityView" destination="fkt-TN-fZl" id="5K8-ca-Wh6"/>
+                        <outlet property="messageLabel" destination="dFM-ex-NgX" id="p6Y-C3-3kE"/>
+                        <outlet property="noDangleButton" destination="MBc-PR-poL" id="0aa-Aj-09c"/>
+                        <segue destination="Hlf-Ak-nE4" kind="show" identifier="gotoChat" id="WgP-4S-Vyr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="984" y="580"/>
+        </scene>
+        <!--Chat View Controller-->
+        <scene sceneID="IuI-b0-X4Y">
+            <objects>
+                <viewController title="Chat" id="Hlf-Ak-nE4" userLabel="Chat View Controller" customClass="DangleChatViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ydr-Ci-bQY"/>
+                        <viewControllerLayoutGuide type="bottom" id="ISS-jt-oMN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kxv-Td-3Ov">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Chat" id="ZHg-ZX-4CD"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7R2-3T-mUK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1802" y="26"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="3p9-SA-3sI">
+            <objects>
+                <navigationController navigationBarHidden="YES" id="ZyI-ta-LSa" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="iVA-mo-gAZ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Ni4-4a-s4U"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KLl-AM-SJT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="102" y="580"/>
+        </scene>
+    </scenes>
+</document>
